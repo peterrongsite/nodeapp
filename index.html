@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QR Code</title>
+</head>
+<body>
+  <div id="qrcode"></div>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-terminal/dist/qrcode-terminal.min.js"></script>
+  <script>
+    // Function to display the QR code on the HTML page
+    function displayQRCode(qr) {
+      var qrcodeDiv = document.getElementById('qrcode');
+      qrcodeDiv.innerHTML = '';
+      var qrOptions = { small: true };
+      qrcode.generate(qr, qrOptions, function(qrCodeImage) {
+        qrcodeDiv.innerHTML = qrCodeImage;
+      });
+    }
+
+    // Connect to the WebSocket and listen for the QR code event
+    const socket = new WebSocket('ws://localhost:8080');
+    socket.addEventListener('message', function(event) {
+      const qrCode = event.data;
+      displayQRCode(qrCode);
+    });
+  </script>
+</body>
+</html>
