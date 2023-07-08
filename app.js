@@ -3,18 +3,8 @@ const mysql = require('mysql2');
 const { Client } = require('whatsapp-web.js');
 const fs = require('fs');
 // Path where the session data will be stored
-const SESSION_FILE_PATH = './session.json';
 
-export const venomOptions = {
-  ...
-  browserArgs: [
-    "--no-sandbox", // Will be passed to browser. Use --no-sandbox with Docker
-  ],
-  puppeteerOptions: { // Will be passed to puppeteer.launch.
-    args: ["--no-sandbox"] // Use --no-sandbox with Docker
-  },
-  ...
-};
+
 
 const client = new Client();
 
